@@ -1,14 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JoJaeMoon_DotNetNote
 {
@@ -42,7 +37,7 @@ namespace JoJaeMoon_DotNetNote
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles();           // wwwroot 폴더를 기본으로
 
             app.UseRouting();
 
@@ -53,7 +48,10 @@ namespace JoJaeMoon_DotNetNote
                 //endpoints.MapRazorPages();
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    //await context.Response.WriteAsync("Hello World!");
+                    // 한글 출력
+                    context.Response.Headers["Content-Type"] = "text/html; charset=utf-8";
+                    await context.Response.WriteAsync("안녕하세요.", System.Text.Encoding.UTF8);
                 });
             });
         }
