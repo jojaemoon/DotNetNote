@@ -46,7 +46,7 @@ namespace DotNetNoteCore
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles();           // 정적 영역 미들웨어  wwwroot
 
             app.UseRouting();
 
